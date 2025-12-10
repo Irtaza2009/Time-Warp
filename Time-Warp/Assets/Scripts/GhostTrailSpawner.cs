@@ -30,6 +30,9 @@ public class GhostTrailSpawner : MonoBehaviour
         ghostSR.sprite = original.sprite;
         ghostSR.flipX = original.flipX;
 
+        // Copy scale
+        ghost.transform.localScale = transform.localScale;
+
         // Pass original color to ghost
         GhostFade ghostFade = ghost.GetComponent<GhostFade>();
         if (ghostFade != null)
