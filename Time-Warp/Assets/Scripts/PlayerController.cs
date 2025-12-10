@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     float horizontalInput;
     bool isGrounded;
+    bool isJumping = false;  
+    string currentAnim = "";
 
     void Awake()
     {
@@ -27,10 +29,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Read input
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        // Ground Check
         isGrounded = Physics2D.BoxCast(
             col.bounds.center,
             col.bounds.size,
@@ -41,44 +41,62 @@ public class PlayerController : MonoBehaviour
         );
 
         // Jump
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && !isJumping && Input.GetButtonDown("Jump"))
         {
             Jump();
+            PlayAnim("Player_Jump");
+            isJumping = true;
         }
 
-        // --- Animation ---
-        animator.SetBool("IsWalking", Mathf.Abs(horizontalInput) > 0.1f);
-        animator.SetBool("IsGrounded", isGrounded);
-        animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
-
-        // --- Flip Sprite ---
+        // Flip sprite
         if (horizontalInput > 0.1f)
-        {
             transform.localScale = new Vector3(1, 1, 1);
-        }
         else if (horizontalInput < -0.1f)
-        {
             transform.localScale = new Vector3(-1, 1, 1);
-        }
+
+        HandleAnimations();
     }
 
     void FixedUpdate()
     {
-        // Smooth horizontal acceleration
-        float targetSpeed = horizontalInput * moveSpeed;
-        float speedDifference = targetSpeed - rb.linearVelocity.x;
-
-        float movement = Mathf.Clamp(
-            speedDifference,
-            -acceleration * Time.fixedDeltaTime,
-            acceleration * Time.fixedDeltaTime
-        );
-
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x + movement, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
     }
+
 
     void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+    }
+
+    // Animations
+    void HandleAnimations()
+    {
+        if (isJumping)
+        {
+            AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+
+            // Wait until full animation finishes
+            if (info.IsName("Player_Jump") && info.normalizedTime >= 1f)
+            {
+                isJumping = false;
+            }
+            else
+            {
+                return; 
+            }
+        }
+
+        if (Mathf.Abs(horizontalInput) > 0.1f)
+            PlayAnim("Player_Walk");
+        else
+            PlayAnim("Player_Idle");
+    }
+
+    void PlayAnim(string animName)
+    {
+        if (currentAnim == animName) return;
+
+        animator.Play(animName);
+        currentAnim = animName;
     }
 }
