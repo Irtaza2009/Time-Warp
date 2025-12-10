@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 469756443}
   - component: {fileID: 469756447}
   - component: {fileID: 469756448}
+  - component: {fileID: 469756449}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -299,7 +300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 6
-  acceleration: 15
   jumpForce: 6
   groundLayer:
     serializedVersion: 2
@@ -327,6 +327,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &469756449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469756442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05cf28fa8b83ef478e163ab153052d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  ghostPrefab: {fileID: 6794045155928996827, guid: 654ed27b4908e4b468449605fa3f991b, type: 3}
+  spawnInterval: 0.05
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +580,8 @@ GameObject:
   - component: {fileID: 611984022}
   - component: {fileID: 611984021}
   - component: {fileID: 611984024}
+  - component: {fileID: 611984025}
+  - component: {fileID: 611984026}
   m_Layer: 6
   m_Name: Crate
   m_TagString: Untagged
@@ -719,6 +735,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &611984025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611984020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e60694593c63c4685a20e464f0fbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  rewindDuration: 5
+  recordRotation: 1
+--- !u!114 &611984026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611984020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05cf28fa8b83ef478e163ab153052d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostTrailSpawner
+  ghostPrefab: {fileID: 6794045155928996827, guid: 654ed27b4908e4b468449605fa3f991b, type: 3}
+  spawnInterval: 0.05
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +842,50 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &734681061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734681063}
+  - component: {fileID: 734681062}
+  m_Layer: 0
+  m_Name: RewindManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &734681062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734681061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b7997d0367d614983a546e2da0219c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!4 &734681063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734681061}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.48769, y: 0.25835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1090,6 +1178,8 @@ GameObject:
   - component: {fileID: 1143140519}
   - component: {fileID: 1143140518}
   - component: {fileID: 1143140521}
+  - component: {fileID: 1143140522}
+  - component: {fileID: 1143140523}
   m_Layer: 6
   m_Name: CrumblingPlatform
   m_TagString: Untagged
@@ -1230,6 +1320,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   crumbleDelay: 3
   playerTag: Player
+--- !u!114 &1143140522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143140517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb08995093e16a4abc90e7cae55842d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1143140523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143140517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05cf28fa8b83ef478e163ab153052d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostTrailSpawner
+  ghostPrefab: {fileID: 6794045155928996827, guid: 654ed27b4908e4b468449605fa3f991b, type: 3}
+  spawnInterval: 0.05
 --- !u!1 &1149231748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,6 +1359,8 @@ GameObject:
   - component: {fileID: 1149231750}
   - component: {fileID: 1149231749}
   - component: {fileID: 1149231753}
+  - component: {fileID: 1149231754}
+  - component: {fileID: 1149231755}
   m_Layer: 6
   m_Name: TriggerObject
   m_TagString: TriggerObject
@@ -1412,6 +1530,34 @@ MonoBehaviour:
   openHeight: 1
   openDuration: 5
   closeSpeed: 3
+--- !u!114 &1149231754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149231748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e60694593c63c4685a20e464f0fbc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewindableObject
+  rewindDuration: 5
+  recordRotation: 1
+--- !u!114 &1149231755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149231748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05cf28fa8b83ef478e163ab153052d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostTrailSpawner
+  ghostPrefab: {fileID: 6794045155928996827, guid: 654ed27b4908e4b468449605fa3f991b, type: 3}
+  spawnInterval: 0.05
 --- !u!1 &1281340649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,3 +1799,4 @@ SceneRoots:
   - {fileID: 1149231752}
   - {fileID: 1118373586}
   - {fileID: 577470101}
+  - {fileID: 734681063}

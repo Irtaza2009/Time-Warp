@@ -6,9 +6,13 @@ public class CrumblingPlatform : MonoBehaviour
     [SerializeField] float crumbleDelay = 3f;
     [SerializeField] string playerTag = "Player";
 
-    Collider2D platformCollider;
-    SpriteRenderer platformRenderer;
-    bool crumbleStarted;
+    public Collider2D platformCollider { get; private set; }
+    public SpriteRenderer platformRenderer { get; private set; }
+    public bool crumbleStarted { get; private set; }
+
+    public bool PlatformColliderEnabled => platformCollider.enabled;
+    public bool PlatformVisible => platformRenderer.enabled;
+    public bool HasCrumbleStarted => crumbleStarted;
 
     void Awake()
     {
@@ -28,15 +32,14 @@ public class CrumblingPlatform : MonoBehaviour
     IEnumerator CrumbleAfterDelay()
     {
         yield return new WaitForSeconds(crumbleDelay);
-
-        if (platformCollider != null) platformCollider.enabled = false;
-        if (platformRenderer != null) platformRenderer.enabled = false;
+        platformCollider.enabled = false;
+        platformRenderer.enabled = false;
     }
 
-    void ResetPlatform()
+    public void RestoreStateFromRewind(bool colliderState, bool rendererState, bool startedState)
     {
-        if (platformCollider != null) platformCollider.enabled = true;
-        if (platformRenderer != null) platformRenderer.enabled = true;
-        crumbleStarted = false;
+        platformCollider.enabled = colliderState;
+        platformRenderer.enabled = rendererState;
+        crumbleStarted = startedState;
     }
 }
