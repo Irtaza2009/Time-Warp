@@ -32,4 +32,11 @@ public class CrumblingPlatform : MonoBehaviour
         if (platformCollider != null) platformCollider.enabled = false;
         if (platformRenderer != null) platformRenderer.enabled = false;
     }
+
+    void ResetPlatform()
+    {
+        if (platformCollider != null) platformCollider.enabled = true;
+        if (platformRenderer != null) platformRenderer.enabled = true;
+        crumbleStarted = false;
+    }
 }
