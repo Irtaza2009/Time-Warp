@@ -4,13 +4,38 @@ using System.Collections.Generic;
 public class RewindManager : MonoBehaviour
 {
     public static bool IsRewinding = false;
+    public AbilityUI rewindUI;
+    [SerializeField] float rewindDuration = 5f;
+    private float rewindTimer;
+    private bool wasActive = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && rewindUI.IsReady)
+        {
             IsRewinding = true;
+            rewindTimer = rewindDuration;
+            wasActive = true;
+        }
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (IsRewinding && Input.GetKey(KeyCode.Q))
+        {
+            rewindTimer -= Time.deltaTime;
+            rewindUI.DecreaseTimer(Time.deltaTime);
+            if (rewindTimer <= 0)
+            {
+                IsRewinding = false;
+                rewindUI.TriggerCooldown();
+            }
+        }
+        else if (IsRewinding)
+        {
             IsRewinding = false;
+            if (wasActive)
+            {
+                rewindUI.TriggerCooldown();
+                wasActive = false;
+            }
+        }
     }
 }

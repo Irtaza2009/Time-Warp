@@ -9,9 +9,12 @@ public class SlowMoBubble : MonoBehaviour
     public float radius = 4f;
     public float slowFactor = 0.2f; // 20% speed
     public bool isActive = false;
+    [SerializeField] float slowmoDuration = 5f;
 
     private Transform player;
     private List<Rigidbody2D> affectedBodies = new List<Rigidbody2D>();
+    public AbilityUI slowmoUI;
+    private float slowmoTimer;
 
     void Awake()
     {
@@ -25,19 +28,36 @@ public class SlowMoBubble : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.E) && slowmoUI.IsReady)
+        {
             Activate();
+        }
 
-        if (Input.GetKeyUp(KeyCode.W))
+        if (isActive && Input.GetKey(KeyCode.E))
+        {
+            slowmoTimer -= Time.deltaTime;
+            slowmoUI.DecreaseTimer(Time.deltaTime);
+            if (slowmoTimer <= 0)
+            {
+                Deactivate();
+                slowmoUI.TriggerCooldown();
+            }
+            else
+            {
+                ApplyBubbleSlowmo();
+            }
+        }
+        else if (isActive)
+        {
             Deactivate();
-
-        if (isActive)
-            ApplyBubbleSlowmo();
+            slowmoUI.TriggerCooldown();
+        }
     }
 
     void Activate()
     {
         isActive = true;
+        slowmoTimer = slowmoDuration;
     }
 
     void Deactivate()
