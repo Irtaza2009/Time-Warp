@@ -9,6 +9,7 @@ public class CrumblingPlatform : MonoBehaviour
     public Collider2D platformCollider { get; private set; }
     public SpriteRenderer platformRenderer { get; private set; }
     public bool crumbleStarted { get; private set; }
+    private Coroutine crumbleCoroutine;
 
     public bool PlatformColliderEnabled => platformCollider.enabled;
     public bool PlatformVisible => platformRenderer.enabled;
@@ -26,7 +27,7 @@ public class CrumblingPlatform : MonoBehaviour
         if (!collision.collider.CompareTag(playerTag)) return;
 
         crumbleStarted = true;
-        StartCoroutine(CrumbleAfterDelay());
+        crumbleCoroutine = StartCoroutine(CrumbleAfterDelay());
     }
 
     IEnumerator CrumbleAfterDelay()
@@ -38,8 +39,15 @@ public class CrumblingPlatform : MonoBehaviour
 
     public void RestoreStateFromRewind(bool colliderState, bool rendererState, bool startedState)
     {
+        // Stop any running crumble coroutine
+        if (crumbleCoroutine != null)
+        {
+            StopCoroutine(crumbleCoroutine);
+            crumbleCoroutine = null;
+        }
+
         platformCollider.enabled = colliderState;
         platformRenderer.enabled = rendererState;
-        crumbleStarted = startedState;
+        crumbleStarted = false;
     }
 }
