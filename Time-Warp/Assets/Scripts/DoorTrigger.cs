@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+
 public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] Transform doorChild;
@@ -11,8 +12,11 @@ public class DoorTrigger : MonoBehaviour
     Vector3 openPosition;
     bool isOpening;
     bool isDoorOpen;
+    private Coroutine openCoroutine;
 
     public bool IsDoorOpen => isDoorOpen;
+    public bool IsOpening => isOpening;
+    public Vector3 DoorChildPosition => doorChild.localPosition;
 
     void Start()
     {
@@ -28,7 +32,7 @@ public class DoorTrigger : MonoBehaviour
         if (isOpening) return;
         if (!collision.collider.CompareTag("Player")) return;
 
-        StartCoroutine(OpenDoor());
+        openCoroutine = StartCoroutine(OpenDoor());
     }
 
     IEnumerator OpenDoor()
@@ -61,5 +65,53 @@ public class DoorTrigger : MonoBehaviour
         doorChild.localPosition = closedPosition;
 
         isOpening = false;
+        openCoroutine = null;
+    }
+
+    public void RestoreStateFromRewind(bool open, bool opening, Vector3 childPosition)
+    {
+        // Stop the current coroutine if running
+        if (openCoroutine != null)
+        {
+            StopCoroutine(openCoroutine);
+            openCoroutine = null;
+        }
+
+        isDoorOpen = open;
+        isOpening = opening;
+        doorChild.localPosition = childPosition;
+    }
+
+    public void ResumeAfterRewind()
+    {
+        // If door was opening, restart the open sequence
+        if (isOpening)
+        {
+            openCoroutine = StartCoroutine(OpenDoor());
+        }
+        // If door was open, start the close sequence
+        else if (isDoorOpen)
+        {
+            openCoroutine = StartCoroutine(CloseDoorAfterDuration());
+        }
+    }
+
+    IEnumerator CloseDoorAfterDuration()
+    {
+        // Wait for open duration
+        yield return new WaitForSeconds(openDuration);
+
+        // Fall down
+        isDoorOpen = false;
+        float elapsed = 0f;
+        while (doorChild.localPosition.y > closedPosition.y)
+        {
+            doorChild.localPosition -= Vector3.up * closeSpeed * Time.deltaTime;
+            yield return null;
+        }
+        doorChild.localPosition = closedPosition;
+
+        isOpening = false;
+        openCoroutine = null;
     }
 }
