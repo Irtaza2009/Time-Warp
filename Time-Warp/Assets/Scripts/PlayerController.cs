@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         );
 
         // Jump
-        if (isGrounded && !isJumping && (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)))
+        if (isGrounded && !isJumping && (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
         {
             Jump();
             PlayAnim("Player_Jump");
