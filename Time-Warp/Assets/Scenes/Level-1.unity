@@ -2115,7 +2115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b7997d0367d614983a546e2da0219c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  rewindUI: {fileID: 0}
+  rewindUI: {fileID: 1093839895}
   rewindDuration: 5
 --- !u!4 &734681063
 Transform:
@@ -2857,7 +2857,7 @@ MonoBehaviour:
   slowFactor: 0.2
   isActive: 0
   slowmoDuration: 5
-  slowmoUI: {fileID: 0}
+  slowmoUI: {fileID: 489371649}
 --- !u!4 &1157946392
 Transform:
   m_ObjectHideFlags: 0
