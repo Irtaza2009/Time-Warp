@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpikeSpawnerTrigger : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class SpikeSpawnerTrigger : MonoBehaviour
         lastSpawnTime = Time.time;
         Debug.Log("Spike Spawner Triggered");
         SpawnSpikes();
+        StartCoroutine(ScreenShake(0.3f, 0.2f));
     }
 
     void SpawnSpikes()
@@ -41,4 +43,21 @@ public class SpikeSpawnerTrigger : MonoBehaviour
             Instantiate(spikePrefab, spawnPos, Quaternion.Euler(0, 0, 180));
         }
     }
+
+    IEnumerator ScreenShake(float duration, float magnitude)
+    {
+        Vector3 originalPos = Camera.main.transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            Camera.main.transform.position = originalPos + new Vector3(x, y, 0);
+            yield return null;
+        }
+
+        Camera.main.transform.position = originalPos;
+    } 
 }
