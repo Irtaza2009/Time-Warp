@@ -3882,6 +3882,7 @@ MonoBehaviour:
   horizontalSpacing: 1
   spawnHeightOffset: 0.5
   cooldown: 2
+  rotationAngle: 180
 --- !u!61 &1524799525
 BoxCollider2D:
   m_ObjectHideFlags: 0

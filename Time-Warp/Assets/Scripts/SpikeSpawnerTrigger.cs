@@ -9,6 +9,7 @@ public class SpikeSpawnerTrigger : MonoBehaviour
     [SerializeField] float horizontalSpacing = 1f;
     [SerializeField] float spawnHeightOffset = 0.5f;
     [SerializeField] float cooldown = 2f;
+    [SerializeField] float rotationAngle = 180f;
 
     float lastSpawnTime = -999f;
 
@@ -40,7 +41,7 @@ public class SpikeSpawnerTrigger : MonoBehaviour
             spawnPos.x += i * horizontalSpacing;
             spawnPos.y += spawnHeightOffset;
 
-            Instantiate(spikePrefab, spawnPos, Quaternion.Euler(0, 0, 180));
+            Instantiate(spikePrefab, spawnPos, Quaternion.Euler(0, 0, rotationAngle));
         }
     }
 

@@ -1089,6 +1089,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rewindUI: {fileID: 1193054098}
   rewindDuration: 5
+  firePrefab: {fileID: 1710960639316735016, guid: 672ba50c2a4783d41a162b42649a2e12, type: 3}
+  fireOffset: {x: 0, y: 1.5, z: 0}
 --- !u!4 &734681063
 Transform:
   m_ObjectHideFlags: 0
@@ -2678,6 +2680,7 @@ MonoBehaviour:
   horizontalSpacing: 1
   spawnHeightOffset: 0.5
   cooldown: 2
+  rotationAngle: 180
 --- !u!61 &1524799525
 BoxCollider2D:
   m_ObjectHideFlags: 0
