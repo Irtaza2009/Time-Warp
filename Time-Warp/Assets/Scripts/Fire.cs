@@ -3,7 +3,7 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     [SerializeField] GameObject firePrefab;
-    [SerializeField] Vector3 fireOffset = new Vector3(0, 1f, 0);
+    [SerializeField] Vector3 fireOffset = new Vector3(0, 1.35f, 0);
     
     private Transform playerTransform;
     private GameObject fireInstance;
