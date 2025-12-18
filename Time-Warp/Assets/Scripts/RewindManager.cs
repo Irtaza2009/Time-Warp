@@ -6,10 +6,16 @@ public class RewindManager : MonoBehaviour
     public static bool IsRewinding = false;
     public AbilityUI rewindUI;
     [SerializeField] float rewindDuration = 5f;
-    [SerializeField] Fire fireEffect;
-    
+
+    private Fire fireEffect;
     private float rewindTimer;
     private bool wasActive = false;
+
+    void Start()
+    {
+        // Find Fire component in scene
+        fireEffect = FindObjectOfType<Fire>();
+    }
 
     void Update()
     {

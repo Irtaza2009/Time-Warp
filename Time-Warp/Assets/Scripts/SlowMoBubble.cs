@@ -15,6 +15,7 @@ public class SlowMoBubble : MonoBehaviour
     private List<Rigidbody2D> affectedBodies = new List<Rigidbody2D>();
     public AbilityUI slowmoUI;
     private float slowmoTimer;
+    private Fire fireEffect;
 
     void Awake()
     {
@@ -24,6 +25,9 @@ public class SlowMoBubble : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        
+        // Find Fire component in scene
+        fireEffect = FindObjectOfType<Fire>();
     }
 
     void Update()
@@ -31,12 +35,16 @@ public class SlowMoBubble : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && slowmoUI.IsReady)
         {
             Activate();
+            if (fireEffect != null)
+                fireEffect.StartSlowmo(slowmoDuration);
         }
 
         if (isActive && Input.GetKey(KeyCode.E))
         {
             slowmoTimer -= Time.deltaTime;
             slowmoUI.DecreaseTimer(Time.deltaTime);
+            if (fireEffect != null)
+                fireEffect.UpdateSlowmoTimer(Time.deltaTime);
             if (slowmoTimer <= 0)
             {
                 Deactivate();
@@ -51,6 +59,8 @@ public class SlowMoBubble : MonoBehaviour
         {
             Deactivate();
             slowmoUI.TriggerCooldown();
+            if (fireEffect != null)
+                fireEffect.StopSlowmo();
         }
     }
 
@@ -71,6 +81,9 @@ public class SlowMoBubble : MonoBehaviour
                 rb.linearDamping = 0f;
         }
         affectedBodies.Clear();
+
+        if (fireEffect != null)
+            fireEffect.StopSlowmo();
     }
 
     void ApplyBubbleSlowmo()

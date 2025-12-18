@@ -11,6 +11,8 @@ public class Fire : MonoBehaviour
     private bool hasPlayedConverge = false;
     private bool isActive = false;
     private float rewindTimer;
+    private float slowmoTimer;
+    private bool isSloummoMode = false;
     private const float convergeDuration = 10f / 12f; // 10 frames at 12 fps = 0.833 seconds
 
     void Start()
@@ -27,7 +29,7 @@ public class Fire : MonoBehaviour
         UpdateFirePosition();
 
         // Trigger converge animation when time remaining equals animation duration
-        if (!hasPlayedConverge && rewindTimer <= convergeDuration)
+        if (!hasPlayedConverge && ((!isSloummoMode && rewindTimer <= convergeDuration) || (isSloummoMode && slowmoTimer <= convergeDuration)))
         {
             PlayConvergeAnimation();
             hasPlayedConverge = true;
@@ -60,6 +62,36 @@ public class Fire : MonoBehaviour
     {
         if (isActive)
             rewindTimer -= deltaTime;
+    }
+
+    public void StartSlowmo(float duration)
+    {
+        if (firePrefab == null || playerTransform == null) return;
+
+        isActive = true;
+        slowmoTimer = duration;
+        isSloummoMode = true;
+        hasPlayedConverge = false;
+
+        if (fireInstance == null)
+        {
+            Vector3 spawnPos = playerTransform.position + fireOffset;
+            fireInstance = Instantiate(firePrefab, spawnPos, Quaternion.identity);
+            fireAnimator = fireInstance.GetComponent<Animator>();
+        }
+    }
+
+    public void StopSlowmo()
+    {
+        isActive = false;
+        isSloummoMode = false;
+        RemoveFire();
+    }
+
+    public void UpdateSlowmoTimer(float deltaTime)
+    {
+        if (isActive && isSloummoMode)
+            slowmoTimer -= deltaTime;
     }
 
     void PlayConvergeAnimation()
