@@ -602,6 +602,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304249750}
   m_CullTransparentMesh: 1
+--- !u!1 &401077770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401077772}
+  - component: {fileID: 401077771}
+  m_Layer: 0
+  m_Name: Fire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &401077771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401077770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d375fc4f4931f4b9116d755c83eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  firePrefab: {fileID: 1710960639316735016, guid: 672ba50c2a4783d41a162b42649a2e12, type: 3}
+  fireOffset: {x: 0, y: 1.5, z: 0}
+--- !u!4 &401077772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401077770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0465, y: 1.08101, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &469756442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,8 +1135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rewindUI: {fileID: 1193054098}
   rewindDuration: 5
-  firePrefab: {fileID: 1710960639316735016, guid: 672ba50c2a4783d41a162b42649a2e12, type: 3}
-  fireOffset: {x: 0, y: 1.5, z: 0}
+  fireEffect: {fileID: 401077771}
 --- !u!4 &734681063
 Transform:
   m_ObjectHideFlags: 0
@@ -3744,3 +3789,4 @@ SceneRoots:
   - {fileID: 1353219631}
   - {fileID: 2128294279}
   - {fileID: 1524799527}
+  - {fileID: 401077772}
