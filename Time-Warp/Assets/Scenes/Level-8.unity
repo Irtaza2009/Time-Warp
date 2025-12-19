@@ -523,7 +523,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72b9abbbc5972e4489d0a8b556a635d6, type: 2}
   m_sharedMaterial: {fileID: -5786921890783587849, guid: 72b9abbbc5972e4489d0a8b556a635d6, type: 2}
@@ -1379,7 +1379,7 @@ GameObject:
   - component: {fileID: 869933299}
   - component: {fileID: 869933298}
   m_Layer: 5
-  m_Name: SlowDown
+  m_Name: MoveFast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1484,9 +1484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Don''t move too fast.
-
-    Or maybe do.'
+  m_text: Now move fast?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72b9abbbc5972e4489d0a8b556a635d6, type: 2}
   m_sharedMaterial: {fileID: -5786921890783587849, guid: 72b9abbbc5972e4489d0a8b556a635d6, type: 2}
@@ -2720,12 +2718,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   spikePrefab: {fileID: 1089252892566918339, guid: 4ed3a27cd3db44748b54005d896863c8, type: 3}
-  spikeCount: 15
+  spikeCount: 14
   horizontalSpacing: 1
   spawnHeightOffset: 0.5
-  cooldown: 2
+  cooldown: 3.5
   rotationAngle: 180
-  spawnContinuously: 0
+  spawnContinuously: 1
 --- !u!61 &1524799525
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2839,8 +2837,8 @@ Transform:
   m_GameObject: {fileID: 1524799523}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1957, y: 5.82, z: 0}
-  m_LocalScale: {x: 13.584486, y: 1, z: 1}
+  m_LocalPosition: {x: 0.4848, y: 5.82, z: 0}
+  m_LocalScale: {x: 12.223321, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

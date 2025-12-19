@@ -10,8 +10,21 @@ public class SpikeSpawnerTrigger : MonoBehaviour
     [SerializeField] float spawnHeightOffset = 0.5f;
     [SerializeField] float cooldown = 2f;
     [SerializeField] float rotationAngle = 180f;
+    [SerializeField] bool spawnContinuously = false;
 
     float lastSpawnTime = -999f;
+
+    void Update()
+    {
+        if (!spawnContinuously) return;
+
+        if (Time.time >= lastSpawnTime + cooldown)
+        {
+            lastSpawnTime = Time.time;
+            SpawnSpikes();
+            StartCoroutine(ScreenShake(0.3f, 0.2f));
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
