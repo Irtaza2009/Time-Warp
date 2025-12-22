@@ -16,6 +16,7 @@ public class SlowMoBubble : MonoBehaviour
     public AbilityUI slowmoUI;
     private float slowmoTimer;
     private Fire fireEffect;
+    public AudioClip slowmoLoop;
 
     void Awake()
     {
@@ -35,6 +36,7 @@ public class SlowMoBubble : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && slowmoUI.IsReady)
         {
             Activate();
+            AudioManager.Instance.PlayLoop(slowmoLoop, 0.3f);
             if (fireEffect != null)
                 fireEffect.StartSlowmo(slowmoDuration);
         }
@@ -48,6 +50,7 @@ public class SlowMoBubble : MonoBehaviour
             if (slowmoTimer <= 0)
             {
                 Deactivate();
+                AudioManager.Instance.StopLoop();
                 slowmoUI.TriggerCooldown();
             }
             else
@@ -58,6 +61,7 @@ public class SlowMoBubble : MonoBehaviour
         else if (isActive)
         {
             Deactivate();
+            AudioManager.Instance.StopLoop();
             slowmoUI.TriggerCooldown();
             if (fireEffect != null)
                 fireEffect.StopSlowmo();

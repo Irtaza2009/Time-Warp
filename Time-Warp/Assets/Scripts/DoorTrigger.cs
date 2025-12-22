@@ -17,6 +17,7 @@ public class DoorTrigger : MonoBehaviour
     public bool IsDoorOpen => isDoorOpen;
     public bool IsOpening => isOpening;
     public Vector3 DoorChildPosition => doorChild.localPosition;
+    public AudioClip doorTriggerClip;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class DoorTrigger : MonoBehaviour
         if (!collision.collider.CompareTag("Player")) return;
 
         openCoroutine = StartCoroutine(OpenDoor());
+        AudioManager.Instance.PlaySFX(doorTriggerClip, 0.7f);
     }
 
     IEnumerator OpenDoor()

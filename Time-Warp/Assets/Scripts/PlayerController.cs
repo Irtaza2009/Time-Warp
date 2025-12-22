@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     bool isJumping = false;  
     string currentAnim = "";
+    public AudioClip jumpClip;
 
     void Awake()
     {
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
             PlayAnim("Player_Jump");
+            AudioManager.Instance.PlaySFX(jumpClip, 0.7f);
             isJumping = true;
         }
 

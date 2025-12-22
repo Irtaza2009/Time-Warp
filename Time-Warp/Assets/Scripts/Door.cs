@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Door : MonoBehaviour
 {
     [SerializeField] DoorTrigger doorTrigger; 
     [SerializeField] string playerTag = "Player";
+    public AudioClip doorClip;
 
     void Awake()
     {
@@ -20,6 +22,7 @@ public class Door : MonoBehaviour
         if (doorTrigger.IsDoorOpen)
         {
             Scene current = SceneManager.GetActiveScene();
+            AudioManager.Instance.PlaySFX(doorClip, 0.7f);
             SceneManager.LoadScene(current.buildIndex + 1);
         }
     }

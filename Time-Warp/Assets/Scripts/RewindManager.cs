@@ -10,6 +10,7 @@ public class RewindManager : MonoBehaviour
     private Fire fireEffect;
     private float rewindTimer;
     private bool wasActive = false;
+    public AudioClip rewindLoop;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class RewindManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && rewindUI.IsReady)
         {
             IsRewinding = true;
+            AudioManager.Instance.PlayLoop(rewindLoop, 0.3f);
             rewindTimer = rewindDuration;
             wasActive = true;
             if (fireEffect != null)
@@ -38,6 +40,7 @@ public class RewindManager : MonoBehaviour
             if (rewindTimer <= 0)
             {
                 IsRewinding = false;
+                AudioManager.Instance.StopLoop();
                 rewindUI.TriggerCooldown();
                 if (fireEffect != null)
                     fireEffect.StopRewind();
@@ -46,6 +49,7 @@ public class RewindManager : MonoBehaviour
         else if (IsRewinding)
         {
             IsRewinding = false;
+            AudioManager.Instance.StopLoop();
             if (wasActive)
             {
                 rewindUI.TriggerCooldown();

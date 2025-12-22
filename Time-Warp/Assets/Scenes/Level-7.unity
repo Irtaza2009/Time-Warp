@@ -835,6 +835,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckDistance: 0.05
+  jumpClip: {fileID: 8300000, guid: 21dc627fc3e49f64e82e7333ab9e5ec5, type: 3}
 --- !u!95 &469756448
 Animator:
   serializedVersion: 7
@@ -1135,6 +1136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rewindUI: {fileID: 1193054098}
   rewindDuration: 5
+  rewindLoop: {fileID: 8300000, guid: 91a5477a7a50f3e4fafe678d3bfd9cae, type: 3}
 --- !u!4 &734681063
 Transform:
   m_ObjectHideFlags: 0
@@ -1930,6 +1932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   doorTrigger: {fileID: 1149231753}
   playerTag: Player
+  doorClip: {fileID: 8300000, guid: 21b5a723b8322a24b919ca250c51364d, type: 3}
 --- !u!1 &1142237184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,6 +2225,7 @@ MonoBehaviour:
   openHeight: 1
   openDuration: 2
   closeSpeed: 3
+  doorTriggerClip: {fileID: 8300000, guid: 03b03685f0d587947a300d2b1a943718, type: 3}
 --- !u!50 &1149231754
 Rigidbody2D:
   serializedVersion: 5
@@ -2295,6 +2299,7 @@ MonoBehaviour:
   isActive: 0
   slowmoDuration: 5
   slowmoUI: {fileID: 1807883063}
+  slowmoLoop: {fileID: 8300000, guid: 293438ed1377e3c4b8e81e115ff65ba2, type: 3}
 --- !u!4 &1157946392
 Transform:
   m_ObjectHideFlags: 0
@@ -2583,6 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebaaf4f8d603e34da1e62ebe2d20e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Restart
+  clickClip: {fileID: 8300000, guid: ad7c5ebba6b76e34a8e6b24ddf0828fc, type: 3}
 --- !u!1 &1501509683
 GameObject:
   m_ObjectHideFlags: 0
