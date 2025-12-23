@@ -15,4 +15,10 @@ public class MainButtons : MonoBehaviour
         AudioManager.Instance.PlaySFX(clickClip, 0.7f);
         SceneManager.LoadScene("Credits");
     }
+
+    public void LoadStartMenu()
+    {
+        AudioManager.Instance.PlaySFX(clickClip, 0.7f);
+        SceneManager.LoadScene("Start");
+    }
 }
