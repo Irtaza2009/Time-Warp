@@ -2730,6 +2730,7 @@ MonoBehaviour:
   cooldown: 3.5
   rotationAngle: 180
   spawnContinuously: 1
+  spikeThud: {fileID: 8300000, guid: 6e2f5caa84ae5fd408fbde1bd24c0b22, type: 3}
 --- !u!61 &1524799525
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class SpikeSpawnerTrigger : MonoBehaviour
     [SerializeField] float cooldown = 2f;
     [SerializeField] float rotationAngle = 180f;
     [SerializeField] bool spawnContinuously = false;
+    public AudioClip spikeThud;
 
     float lastSpawnTime = -999f;
 
@@ -22,6 +23,7 @@ public class SpikeSpawnerTrigger : MonoBehaviour
         {
             lastSpawnTime = Time.time;
             SpawnSpikes();
+            AudioManager.Instance.PlaySFX(spikeThud, 0.7f);
             StartCoroutine(ScreenShake(0.3f, 0.2f));
         }
     }
